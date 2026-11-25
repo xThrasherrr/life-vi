@@ -1,0 +1,33 @@
+name: Smoke test
+
+# Checks the live app once a day and after every release; a failure emails the repo owner.
+on:
+  schedule:
+    - cron: "17 9 * * *"
+  workflow_dispatch:
+  workflow_run:
+    workflows: [Release]
+    types: [completed]
+
+permissions:
+  contents: read
+
+jobs:
+  smoke:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Live app loads
+        env:
+          OWNER: ${{ github.repository_owner }}
+          REPO: ${{ github.event.repository.name }}
+        run: |
+          url="https://$(printf '%s' "$OWNER" | tr '[:upper:]' '[:lower:]').github.io/$REPO/"
+          echo "url=$url" >> "$GITHUB_ENV"
+          curl -sSf --retry 3 --retry-delay 20 "$url" | grep -q '<title>LIFE VI</title>'
+          curl -sSf -o /dev/null "${url}js/app.js"
+          curl -sSf -o /dev/null "${url}css/app.css"
+      - name: Missing pages return 404
+        run: |
+          code=$(curl -s -o /dev/null -w '%{http_code}' "${url}launch-check-404")
+          [ "$code" = 404 ] || { echo "::error::Expected 404 for a missing page, got $code."; exit 1; }
