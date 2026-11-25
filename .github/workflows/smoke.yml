@@ -18,11 +18,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Live app loads
-        env:
-          OWNER: ${{ github.repository_owner }}
-          REPO: ${{ github.event.repository.name }}
         run: |
-          url="https://$(printf '%s' "$OWNER" | tr '[:upper:]' '[:lower:]').github.io/$REPO/"
+          url="https://life-vi.xthrasherrr.dev/"
           echo "url=$url" >> "$GITHUB_ENV"
           curl -sSf --retry 3 --retry-delay 20 "$url" | grep -q '<title>LIFE VI</title>'
           curl -sSf -o /dev/null "${url}js/app.js"

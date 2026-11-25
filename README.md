@@ -4,7 +4,7 @@
   <p><strong>A free habit tracker that runs your real life like an open-world game HUD.</strong></p>
 
   <p>
-    <a href="https://xthrasherrr.github.io/life-vi/"><img src="https://img.shields.io/badge/Open_the_app-xthrasherrr.github.io%2Flife--vi-ff4fa3?style=for-the-badge" alt="Open the app"></a>
+    <a href="https://life-vi.xthrasherrr.dev/"><img src="https://img.shields.io/badge/Open_the_app-life--vi.xthrasherrr.dev-ff4fa3?style=for-the-badge" alt="Open the app"></a>
   </p>
 
   <p>
@@ -39,7 +39,7 @@ LIFE VI is in testing, which is why the version starts with 0. Expect changes, a
 
 ## Get it on your phone
 
-The app lives at **[xthrasherrr.github.io/life-vi](https://xthrasherrr.github.io/life-vi/)**. Add it to your home screen so it opens full screen like any other app.
+The app lives at **[life-vi.xthrasherrr.dev](https://life-vi.xthrasherrr.dev/)**. Add it to your home screen so it opens full screen like any other app.
 
 ### iPhone
 
