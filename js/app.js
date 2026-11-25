@@ -51,6 +51,20 @@ function restart(el, cls) {
 }
 function announce(text) { $('announce').textContent = text; }
 
+// Game-style feedback for a logged item: text rises above the button and the matching bar flashes
+const STAT_NAMES = { health: 'Health', energy: 'Energy', focus: 'Focus' };
+function showPickup(btn, r) {
+  const worked = r.started || r.gained > 0;
+  const text = r.started ? 'Focus started' : worked ? `+${r.gained} ${STAT_NAMES[r.stat]}` : `${STAT_NAMES[r.stat]} is full`;
+  const pop = make('span', `pickup c-${r.stat}${worked ? '' : ' full'}`, text);
+  pop.setAttribute('aria-hidden', 'true');
+  btn.parentElement.querySelectorAll('.pickup').forEach((el) => el.remove());
+  btn.parentElement.append(pop);
+  setTimeout(() => pop.remove(), 1300);
+  if (worked) restart(document.querySelector(`[data-stat="${r.stat}"]`), 'gain');
+  announce(text);
+}
+
 const fmtTime = (ms) => new Date(ms).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
 function fmtWhen(ms, now) {
   return L.dayKey(ms) === L.dayKey(now) ? fmtTime(ms) : `${DAYS[new Date(ms).getDay()]} ${fmtTime(ms)}`;
@@ -376,6 +390,7 @@ function render() {
   $('focusSlot').disabled = focusing;
   $('focusSlot').classList.toggle('running', focusing);
   $('focusQty').textContent = focusing ? `${Math.max(1, Math.ceil((s.focusUntil - now) / 60e3))}m` : '25m';
+  $('focusName').textContent = focusing ? 'Focusing' : 'Focus';
 
   const h = d.getHours() + d.getMinutes() / 60;
   const [a, b, c] = skyAt(h);
@@ -507,8 +522,9 @@ document.addEventListener('click', (e) => {
   const now = Date.now();
   if (b.dataset.log) {
     L.tick(state, now);
-    L.logItem(state, b.dataset.log, now);
+    const result = L.logItem(state, b.dataset.log, now);
     save();
+    if (result) showPickup(b, result);
   } else if (b.dataset.mission) {
     selectedId = Number(b.dataset.mission);
   } else if ('add' in b.dataset) {

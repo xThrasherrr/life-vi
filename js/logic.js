@@ -163,15 +163,19 @@ export function streakCount(s, now) {
   return s.streak.day === today || s.streak.day === yesterday ? s.streak.count : 0;
 }
 
+// Returns what the tap did, so the screen can show it: points gained (0 when the bar was already full), or a started focus session
 export function logItem(s, kind, now) {
   if (kind === 'focus') {
-    if (s.focusUntil === null) s.focusUntil = now + FOCUS_MS;
-    return;
+    if (s.focusUntil !== null) return null;
+    s.focusUntil = now + FOCUS_MS;
+    return { stat: 'focus', gained: 0, started: true };
   }
   const item = ITEMS[kind];
-  if (!item) return;
+  if (!item) return null;
+  const before = s.stats[item.stat];
   bump(s, item.stat, item.amount);
   if (kind === 'walk') gainXp(s, 'stamina', 10, now);
+  return { stat: item.stat, gained: Math.round(s.stats[item.stat] - before), started: false };
 }
 
 function restoreFromSleep(s, hours, now) {

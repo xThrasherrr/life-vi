@@ -35,6 +35,16 @@ test('items refill their stat and walks grow stamina', () => {
   assert.equal(s.skills.stamina.xp, 10);
 });
 
+test('a tap reports what it added, including nothing when the bar is full', () => {
+  const s = fresh();
+  assert.deepEqual(L.logItem(s, 'meal', T0), { stat: 'health', gained: 15, started: false });
+  s.stats.energy = 95;
+  assert.equal(L.logItem(s, 'walk', T0).gained, 5);
+  assert.equal(L.logItem(s, 'walk', T0).gained, 0);
+  assert.equal(L.logItem(s, 'focus', T0).started, true);
+  assert.equal(L.logItem(s, 'focus', T0), null); // already running
+});
+
 test('sleeping pauses drain and refills on wake', () => {
   const s = fresh();
   s.stats.energy = 30;
