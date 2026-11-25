@@ -1,0 +1,17 @@
+{
+  "id": "./",
+  "name": "LIFE VI",
+  "short_name": "LIFE VI",
+  "description": "Run your real life like an open-world game HUD: health, energy and focus bars, a wanted level for late missions, and skills that level up.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0f0e0c",
+  "theme_color": "#0f0e0c",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
