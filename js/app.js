@@ -54,8 +54,10 @@ function announce(text) { $('announce').textContent = text; }
 // Game-style feedback for a logged item: text rises above the button and the matching bar flashes
 const STAT_NAMES = { health: 'Health', energy: 'Energy', focus: 'Focus' };
 function showPickup(btn, r) {
-  const worked = r.started || r.gained > 0;
-  const text = r.started ? 'Focus started' : worked ? `+${r.gained} ${STAT_NAMES[r.stat]}` : `${STAT_NAMES[r.stat]} is full`;
+  const worked = r.started || r.stopped || r.gained > 0;
+  const text = r.started ? 'Focus started'
+    : r.stopped ? (r.gained > 0 ? `Stopped, +${r.gained} Focus` : 'Focus stopped')
+    : worked ? `+${r.gained} ${STAT_NAMES[r.stat]}` : `${STAT_NAMES[r.stat]} is full`;
   const pop = make('span', `pickup c-${r.stat}${worked ? '' : ' full'}`, text);
   pop.setAttribute('aria-hidden', 'true');
   btn.parentElement.querySelectorAll('.pickup').forEach((el) => el.remove());
@@ -387,7 +389,7 @@ function render() {
   }
 
   const focusing = s.focusUntil !== null;
-  $('focusSlot').disabled = focusing;
+  $('focusSlot').setAttribute('aria-label', focusing ? 'Stop the focus session' : 'Start a 25 minute focus session');
   $('focusSlot').classList.toggle('running', focusing);
   $('focusQty').textContent = focusing ? `${Math.max(1, Math.ceil((s.focusUntil - now) / 60e3))}m` : '25m';
   $('focusName').textContent = focusing ? 'Focusing' : 'Focus';

@@ -42,7 +42,19 @@ test('a tap reports what it added, including nothing when the bar is full', () =
   assert.equal(L.logItem(s, 'walk', T0).gained, 5);
   assert.equal(L.logItem(s, 'walk', T0).gained, 0);
   assert.equal(L.logItem(s, 'focus', T0).started, true);
-  assert.equal(L.logItem(s, 'focus', T0), null); // already running
+});
+
+test('tapping focus again stops the session and pays for the time spent', () => {
+  const s = fresh();
+  L.logItem(s, 'focus', T0);
+  L.tick(s, T0 + min(10));
+  const r = L.logItem(s, 'focus', T0 + min(10));
+  assert.deepEqual(r, { stat: 'focus', gained: 8, stopped: true });
+  assert.equal(s.focusUntil, null);
+  assert.equal(s.skills.discipline.xp, 0); // the bonus is for full sessions
+  L.tick(s, T0 + min(20));
+  assert.equal(s.stats.focus, 78 - 1); // drains again once stopped
+  assert.equal(L.logItem(s, 'focus', T0 + min(20)).started, true); // and can start again
 });
 
 test('sleeping pauses drain and refills on wake', () => {

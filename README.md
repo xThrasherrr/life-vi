@@ -75,7 +75,7 @@ The bars only drain while you're awake, and they keep going while the app is clo
 ### The buttons along the bottom
 
 - **Meal, Water and Walk:** tap one when you do it.
-- **Focus:** starts a 25-minute session. Focus stops draining while it runs, and you get +20 when it ends. You can close the app; the timer keeps counting.
+- **Focus:** starts a 25-minute session. Focus stops draining while it runs, and you get +20 when it ends. You can close the app; the timer keeps counting. Tap Focus again to stop early, and you keep the share of the +20 you've earned so far.
 - **Sleep:** tap it at bedtime, then tap **Wake up** in the morning. Eight hours refills Energy and Focus completely. If you forget to tap it, the app notices when you come back after 4 or more hours and asks whether you were asleep.
 - **Alerts:** messages from Your Body, Your Brain, Dispatch and others. The red number shows how many you haven't read.
 

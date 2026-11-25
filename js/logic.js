@@ -166,7 +166,7 @@ export function streakCount(s, now) {
 // Returns what the tap did, so the screen can show it: points gained (0 when the bar was already full), or a started focus session
 export function logItem(s, kind, now) {
   if (kind === 'focus') {
-    if (s.focusUntil !== null) return null;
+    if (s.focusUntil !== null) return stopFocus(s, now);
     s.focusUntil = now + FOCUS_MS;
     return { stat: 'focus', gained: 0, started: true };
   }
@@ -176,6 +176,16 @@ export function logItem(s, kind, now) {
   bump(s, item.stat, item.amount);
   if (kind === 'walk') gainXp(s, 'stamina', 10, now);
   return { stat: item.stat, gained: Math.round(s.stats[item.stat] - before), started: false };
+}
+
+// Stopping early pays the share of the +20 earned so far; the Discipline bonus stays for full sessions
+export function stopFocus(s, now) {
+  if (s.focusUntil === null) return null;
+  const elapsed = Math.min(Math.max(now - (s.focusUntil - FOCUS_MS), 0), FOCUS_MS);
+  const before = s.stats.focus;
+  bump(s, 'focus', 20 * (elapsed / FOCUS_MS));
+  s.focusUntil = null;
+  return { stat: 'focus', gained: Math.round(s.stats.focus - before), stopped: true };
 }
 
 function restoreFromSleep(s, hours, now) {
