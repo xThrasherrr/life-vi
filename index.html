@@ -50,11 +50,11 @@
   <header class="hud" id="hud">
     <div class="vitals">
       <div class="vital c-health" data-stat="health">
-        <span class="vital-icon"><svg class="i fill"><use href="#i-heart"/></svg></span>
+        <span class="vital-icon"><svg class="i solid"><use href="#i-heart"/></svg></span>
         <div class="bar notch" role="meter" aria-label="Health" aria-valuemin="0" aria-valuemax="100" aria-valuenow="70"><span class="fill"></span></div>
       </div>
       <div class="vital c-energy" data-stat="energy">
-        <span class="vital-icon"><svg class="i fill"><use href="#i-zap"/></svg></span>
+        <span class="vital-icon"><svg class="i solid"><use href="#i-zap"/></svg></span>
         <div class="bar" role="meter" aria-label="Energy" aria-valuemin="0" aria-valuemax="100" aria-valuenow="70"><span class="fill"></span></div>
       </div>
       <div class="vital c-focus" data-stat="focus">
@@ -101,9 +101,9 @@
   </div>
 
   <nav class="items" id="items" aria-label="Log it">
-    <div class="item"><button class="slot c-health" data-log="meal" aria-label="Ate a meal, plus 15 Health"><svg class="i"><use href="#i-utensils"/></svg><span class="qty">+15<svg class="i fill"><use href="#i-heart"/></svg></span></button><span class="item-name">Meal</span></div>
-    <div class="item"><button class="slot c-health" data-log="water" aria-label="Drank water, plus 5 Health"><svg class="i"><use href="#i-glass-water"/></svg><span class="qty">+5<svg class="i fill"><use href="#i-heart"/></svg></span></button><span class="item-name">Water</span></div>
-    <div class="item"><button class="slot c-energy" data-log="walk" aria-label="Went for a walk, plus 10 Energy"><svg class="i"><use href="#i-footprints"/></svg><span class="qty">+10<svg class="i fill"><use href="#i-zap"/></svg></span></button><span class="item-name">Walk</span></div>
+    <div class="item"><button class="slot c-health" data-log="meal" aria-label="Ate a meal, plus 15 Health"><svg class="i"><use href="#i-utensils"/></svg><span class="qty">+15<svg class="i solid"><use href="#i-heart"/></svg></span></button><span class="item-name">Meal</span></div>
+    <div class="item"><button class="slot c-health" data-log="water" aria-label="Drank water, plus 5 Health"><svg class="i"><use href="#i-glass-water"/></svg><span class="qty">+5<svg class="i solid"><use href="#i-heart"/></svg></span></button><span class="item-name">Water</span></div>
+    <div class="item"><button class="slot c-energy" data-log="walk" aria-label="Went for a walk, plus 10 Energy"><svg class="i"><use href="#i-footprints"/></svg><span class="qty">+10<svg class="i solid"><use href="#i-zap"/></svg></span></button><span class="item-name">Walk</span></div>
     <div class="item"><button class="slot c-focus" data-log="focus" id="focusSlot" aria-label="Start a 25 minute focus session"><svg class="i"><use href="#i-timer"/></svg><span class="qty"><span id="focusQty">25m</span><svg class="i"><use href="#i-eye"/></svg></span></button><span class="item-name" id="focusName">Focus</span></div>
     <div class="item"><button class="slot c-sleep" id="sleepSlot" aria-label="Go to sleep"><svg class="i"><use href="#i-moon"/></svg><span class="qty">Rest</span></button><span class="item-name">Sleep</span></div>
     <div class="item item-alerts"><button class="slot" id="bellBtn" data-open="alerts" aria-label="Alerts"><svg class="i"><use href="#i-bell"/></svg><span class="qty" id="bellQty">0 new</span><span class="count" id="bellCount" hidden>0</span></button><span class="item-name">Alerts</span></div>
@@ -115,8 +115,8 @@
       <img class="intro-logo" src="icons/logo-clear.svg" alt="LIFE VI" width="680" height="300">
       <h2 class="sr" id="introTitle">Welcome to LIFE VI</h2>
       <ul class="how">
-        <li class="c-health"><svg class="i fill"><use href="#i-heart"/></svg><span>Your bars drain as the day goes on. Log meals, water, walks, focus sessions and sleep to refill them.</span></li>
-        <li class="c-wanted"><svg class="i fill"><use href="#i-star"/></svg><span>Missions with a deadline raise your wanted level when they run late. Finish them to clear it.</span></li>
+        <li class="c-health"><svg class="i solid"><use href="#i-heart"/></svg><span>Your bars drain as the day goes on. Log meals, water, walks, focus sessions and sleep to refill them.</span></li>
+        <li class="c-wanted"><svg class="i solid"><use href="#i-star"/></svg><span>Missions with a deadline raise your wanted level when they run late. Finish them to clear it.</span></li>
         <li class="c-energy"><svg class="i"><use href="#i-shield-check"/></svg><span>Everything stays on this phone. No account, and nothing is uploaded.</span></li>
       </ul>
       <button class="c-btn big" id="introStart">Start</button>
@@ -229,7 +229,7 @@
       <ul class="rewards">
         <li class="c-respect"><svg class="i"><use href="#i-award"/></svg>+50 Respect</li>
         <li class="c-white"><svg class="i"><use href="#i-trending-up"/></svg>+30 Discipline</li>
-        <li class="c-wanted" id="rewardStar"><svg class="i fill"><use href="#i-star"/></svg>Wanted level down</li>
+        <li class="c-wanted" id="rewardStar"><svg class="i solid"><use href="#i-star"/></svg>Wanted level down</li>
       </ul>
       <button class="c-btn" id="continueBtn">Continue</button>
       <span class="tap-hint">Tap anywhere to close</span>

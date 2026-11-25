@@ -339,7 +339,7 @@ function render() {
   for (const k of ['health', 'energy', 'focus']) {
     const v = s.stats[k];
     const row = document.querySelector(`[data-stat="${k}"]`);
-    row.querySelector('.fill').style.transform = `scaleX(${v / 100})`;
+    row.querySelector('.bar .fill').style.transform = `scaleX(${v / 100})`;
     row.querySelector('.bar').setAttribute('aria-valuenow', String(Math.round(v)));
     row.classList.toggle('low', v < 25);
   }
@@ -383,7 +383,7 @@ function render() {
   for (const k of ['stamina', 'sleep', 'discipline']) {
     const el = document.querySelector(`[data-skill="${k}"]`);
     el.querySelector('.skill-lv').textContent = `LV ${s.skills[k].lv}`;
-    el.querySelector('.fill').style.transform = `scaleX(${s.skills[k].xp / 100})`;
+    el.querySelector('.bar .fill').style.transform = `scaleX(${s.skills[k].xp / 100})`;
   }
 
   const focusing = s.focusUntil !== null;
